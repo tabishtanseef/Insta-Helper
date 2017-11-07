@@ -8,8 +8,10 @@ def get_user_info():
 
     ACCESS_TOKEN = '?access_token={token}'.format(token=TOKEN)
 
-    user_info = requests.get(BASE_URL+END_POINT+ACCESS_TOKEN).json()
-
-    pprint (user_info)
+    user_info = requests.get(BASE_URL+END_POINT+ACCESS_TOKEN)
+    if user_info.status_code == 200:
+        print user_info.json()
+    else:
+        print 'Status code other than 200 received!'
 
 get_user_info()
